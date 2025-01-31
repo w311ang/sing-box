@@ -44,6 +44,7 @@ func (r *Router) matchDNS(ctx context.Context, allowFakeIP bool, ruleIndex int, 
 	if metadata == nil {
 		panic("no context")
 	}
+	r.logger.DebugContext(ctx, "Routing metadata: ", metadata)
 	var options dns.QueryOptions
 	var currentRuleIndex int
 	if ruleIndex != -1 {
