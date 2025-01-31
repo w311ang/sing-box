@@ -273,7 +273,7 @@ jobs:
           mkdir -p dist/release
           cp clients/android/app/build/outputs/apk/play/release/*.apk dist/release || true
           cp clients/android/app/build/outputs/apk/other/release/*-universal.apk dist/release || true
-          cp clients/android/app/build/outputs/ dist/release
+          cp -r clients/android/app/build/outputs/ dist/release
       - name: Upload artifact
         if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
