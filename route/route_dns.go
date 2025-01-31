@@ -115,6 +115,7 @@ func (r *Router) matchDNS(ctx context.Context, allowFakeIP bool, ruleIndex int, 
 }
 
 func (r *Router) Exchange(ctx context.Context, message *mDNS.Msg) (*mDNS.Msg, error) {
+	r.logger.DebugContext(ctx, "exchange Qtype: ", mDNS.TypeToString[message.Question[0].Qtype])
 	if len(message.Question) != 1 {
 		r.dnsLogger.WarnContext(ctx, "bad question size: ", len(message.Question))
 		responseMessage := mDNS.Msg{
