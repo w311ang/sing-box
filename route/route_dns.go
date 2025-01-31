@@ -6,6 +6,7 @@ import (
 	"net/netip"
 	"strings"
 	"time"
+	"encoding/json"
 
 	"github.com/sagernet/sing-box/adapter"
 	C "github.com/sagernet/sing-box/constant"
@@ -44,7 +45,8 @@ func (r *Router) matchDNS(ctx context.Context, allowFakeIP bool, ruleIndex int, 
 	if metadata == nil {
 		panic("no context")
 	}
-	r.logger.DebugContext(ctx, "Routing metadata: ", metadata)
+	jsonData, _ := json.MarshalIndent(metadata, "", "  ")
+	r.logger.DebugContext(ctx, "Routing metadata: ", string(jsonData))
 	var options dns.QueryOptions
 	var currentRuleIndex int
 	if ruleIndex != -1 {
