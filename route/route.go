@@ -9,6 +9,7 @@ import (
 	"os/user"
 	"strings"
 	"time"
+	"encoding/json"
 
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing-box/common/conntrack"
@@ -384,6 +385,8 @@ func (r *Router) matchRule(
 	}
 
 match:
+	jsonData, _ := json.MarshalIndent(metadata, "", "  ")
+	r.logger.DebugContext(ctx, "Routing metadata: ", string(jsonData))
 	for currentRuleIndex, currentRule := range r.rules {
 		metadata.ResetRuleCache()
 		if !currentRule.Match(metadata) {
