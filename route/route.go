@@ -383,10 +383,10 @@ func (r *Router) matchRule(
 		}
 		metadata.InboundOptions = option.InboundOptions{}
 	}
-
-match:
 	jsonData, _ := json.MarshalIndent(metadata, "", "  ")
 	r.logger.DebugContext(ctx, "Routing metadata: ", string(jsonData))
+
+match:
 	for currentRuleIndex, currentRule := range r.rules {
 		metadata.ResetRuleCache()
 		if !currentRule.Match(metadata) {
