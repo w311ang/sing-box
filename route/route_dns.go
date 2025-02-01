@@ -46,7 +46,7 @@ func (r *Router) matchDNS(ctx context.Context, allowFakeIP bool, ruleIndex int, 
 		panic("no context")
 	}
 	jsonData, _ := json.MarshalIndent(metadata, "", "  ")
-	r.logger.DebugContext(ctx, "Routing metadata: ", string(jsonData))
+	r.logger.DebugContext(ctx, "RoutingDNS metadata: ", string(jsonData))
 	var options dns.QueryOptions
 	var currentRuleIndex int
 	if ruleIndex != -1 {
